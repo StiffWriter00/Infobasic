@@ -16,10 +16,10 @@ public class Ex2 {
         // INPUT NUMBER
         Double number = 0.0;
         try {
-            System.out.println("\nInserici il numero:");
+            System.out.println("\nInsert a number:");
             number = Double.parseDouble(scanner.nextLine());
         } catch (NumberFormatException ex) {
-            System.out.println("\nInserire solo numeri!\n");
+            System.out.println("\nInsert numbers only!\n");
             System.exit(1);
         }
         

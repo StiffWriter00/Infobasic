@@ -14,17 +14,17 @@ public class Ex4 {
         Scanner scanner = new Scanner(System.in); 
 
         // INPUT LETTER 'A'
-        System.out.println("\nInserire la prima lettera:");
+        System.out.println("\nInsert the first letter:");
         String a_input = scanner.nextLine();
         char a_letter = a_input.charAt(0);
 
         // INPUT LETTER 'B'
-        System.out.println("\nInserire la seconda lettera:");
+        System.out.println("\nInsert the second letter:");
         String b_input = scanner.nextLine();
         char b_letter = b_input.charAt(0);
 
         // INPUT STRING WITH TWO SPACES
-        System.out.println("\nInserire una stringa con due spazi per favore:");
+        System.out.println("\nInsert a string with two spaces:");
         String c_input = scanner.nextLine();
 
         // GET THE STRING WITHOUT SPACES

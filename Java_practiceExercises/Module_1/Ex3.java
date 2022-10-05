@@ -14,7 +14,7 @@ public class Ex3 {
         Scanner scanner = new Scanner(System.in); 
 
         // INPUT STRING
-        System.out.println("\nInserire una frase:");
+        System.out.println("\nInsert a phrase:");
         String string = scanner.nextLine();
 
         // INITIALIZE ARRAY

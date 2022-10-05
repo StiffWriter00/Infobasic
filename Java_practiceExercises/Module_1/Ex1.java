@@ -16,34 +16,34 @@ public class Ex1 {
         // INPUT FIRST NUMBER
         Double first_number = 0.0;
         try {
-            System.out.println("\nInserici il primo numero:");
+            System.out.println("\nInsert the first number:");
             first_number = Double.parseDouble(scanner.nextLine());
         } catch(NumberFormatException ex) {
-            System.out.println("\nInserire solo numeri!\n");
+            System.out.println("\nInsert numbers only!\n");
             System.exit(1);
         }
 
         // INPUT SECOND NUMBER
         Double second_number = 0.0;
         try {    
-            System.out.println("\nInserici il secondo numero:");
+            System.out.println("\nInsert the second number:");
             second_number = Double.parseDouble(scanner.nextLine());
         } catch(NumberFormatException ex) {
-            System.out.println("\nInserire solo numeri!\n");
+            System.out.println("\nInsert numbers only!\n");
             System.exit(1);
         }
 
         // SUM RESULT
-        System.out.println("\nLa somma è ---> " + (first_number + second_number));
+        System.out.println("\nThe sum result is ---> " + (first_number + second_number));
 
         // SUBSTRACTION RESULT
-        System.out.println("La sottrazione è ---> " + (first_number - second_number));
+        System.out.println("The substraction result is ---> " + (first_number - second_number));
 
         // MULTIPLICATION RESULT
-        System.out.println("La moltiplicazione è ---> " + (first_number * second_number));
+        System.out.println("The multiplication result is ---> " + (first_number * second_number));
 
         // DIVISION RESULT
-        System.out.println("La divisione è ---> " + (first_number / second_number) + "\n");
+        System.out.println("The division result is ---> " + (first_number / second_number) + "\n");
 
         // CLOSE SCAN OBJECT && EXIT PROGRAM
         scanner.close();
