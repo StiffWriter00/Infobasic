@@ -1,3 +1,4 @@
-# Heads_or_Tails
-A basic exercise frontend software with the heads or tails game.
-At the moment it's not completed.
+# ***Heads_or_Tails***
+## A basic client-side software with the heads or tails game.
+
+### **<br>At the moment it's not complete.**
