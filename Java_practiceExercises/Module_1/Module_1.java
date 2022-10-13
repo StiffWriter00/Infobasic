@@ -1,5 +1,6 @@
 // IMPORT MODULE
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 // CLASS
 public class Module_1 {
@@ -7,8 +8,7 @@ public class Module_1 {
     // MAIN
     public static void main(String[] args) {
 
-    // ASK THE USER WHICH PROGRAM TO EXECUTE
-	System.out.println("\nWELCOME!\nPlease choose the program you want to run:\n");
+    // CALL FUNCTION TO CHOOSE A PROGRAM TO RUN
 	chooseProgram();
 
     }
@@ -16,29 +16,38 @@ public class Module_1 {
     // FUNCTION TO CHOOSE WHICH PROGRAM TO RUN
     private static void chooseProgram() {
 
+        // ASK THE USER WHICH PROGRAM TO EXECUTE
+        System.out.println("\nWELCOME!\nPlease choose the program you want to run:\n");
+
         // SPECIFY INPUT INSTRUCTIONS
         System.out.println("1 ---> Aritmetic operators");
         System.out.println("2 ---> Even or odds");
         System.out.println("3 ---> Invert string");
         System.out.println("4 ---> Replace intruders");
         System.out.println("5 ---> Compare strings");
+        System.out.println("6 ---> Exit");
 	
-        // CREATE SCAN OBJECT && INPUT
+        // CREATE SCAN OBJECT && USER INPUT
         Scanner scanner = new Scanner(System.in); 
-
-        // USER INPUT
         System.out.println("\nInsert the number corrisponding to the program in order to run it:");
-        String input = scanner.next();
-        //if(input != 'as') {
-            System.out.println("\nInvalid input");
+
+        // INPUT HANDLING
+        try {
+            int input = scanner.nextInt();
+            if(input >= 1 && input <= 6) {
+                System.out.println("Yeah");
+            } else {
+                System.out.println("\nInvalid input\n");
+                // add sleep && clear screen
+                chooseProgram();
+            }
+
+        } catch(InputMismatchException ex) {
+            System.out.println("\nInvalid input\n");
             chooseProgram();
-    //    }
+        }
 
     }
-
-	// SWITCH CASE CHOISE
-	
-
 
     // EXERCISE N°1
     private static void aritmeticOperators() {
@@ -112,6 +121,7 @@ public class Module_1 {
         // CLOSE SCAN OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
+
     }
 
     // EXERCISE N°3
@@ -137,6 +147,7 @@ public class Module_1 {
         // CLOSE SCAN OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
+
     }
 
     // EXERCISE N°4
@@ -181,6 +192,7 @@ public class Module_1 {
         // CLOSE SCAN OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
+
     }
 
     // EXERCISE N°5
@@ -221,6 +233,7 @@ public class Module_1 {
         // CLOSE SCAN OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
+
     }
 
 }
