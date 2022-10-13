@@ -6,17 +6,12 @@ import java.util.InputMismatchException;
 public class Module_1 {
 
     // MAIN
-    public static void main(String[] args) {
-
-    // CALL FUNCTION TO CHOOSE A PROGRAM TO RUN
-	chooseProgram();
-
-    }
+    public static void main(String[] args) {chooseProgram();}
 
     // FUNCTION TO CHOOSE WHICH PROGRAM TO RUN
     private static void chooseProgram() {
 
-        // ASK THE USER WHICH PROGRAM TO EXECUTE
+        // WELCOME MESSAGE && INPUT REQUEST
         System.out.println("\nWELCOME!\nPlease choose the program you want to run:\n");
 
         // SPECIFY INPUT INSTRUCTIONS
@@ -27,7 +22,7 @@ public class Module_1 {
         System.out.println("5 ---> Compare strings");
         System.out.println("6 ---> Exit");
 	
-        // CREATE SCAN OBJECT && USER INPUT
+        // CREATE SCANNER OBJECT && USER INPUT
         Scanner scanner = new Scanner(System.in); 
         System.out.println("\nInsert the number corrisponding to the program in order to run it:");
 
@@ -35,24 +30,40 @@ public class Module_1 {
         try {
             int input = scanner.nextInt();
             if(input >= 1 && input <= 6) {
-                System.out.println("Yeah");
+                switch(input) {
+                    case 1:
+                        aritmeticOperators();
+                    case 2:
+                        evenOrOdds();
+                    case 3:
+                        invertString();
+                    case 4:
+                        replaceIntruders();
+                    case 5:
+                        compareStrings();
+                    case 6:
+                        System.out.println("\nBye!\n");
+                        System.exit(0);
+                    default:}
             } else {
-                System.out.println("\nInvalid input\n");
-                // add sleep && clear screen
+                System.out.println("\nInvalid input!\n");
                 chooseProgram();
             }
 
         } catch(InputMismatchException ex) {
-            System.out.println("\nInvalid input\n");
+            System.out.println("\nInvalid input!\n");
             chooseProgram();
         }
+
+        // CLOSE SCANNER OBJECT
+        scanner.close();
 
     }
 
     // EXERCISE N°1
     private static void aritmeticOperators() {
 
-        // CREATE SCAN OBJECT
+        // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in);
 
         // INPUT FIRST NUMBER
@@ -87,7 +98,7 @@ public class Module_1 {
         // DIVISION RESULT
         System.out.println("The division result is ---> " + (first_number / second_number) + "\n");
 
-        // CLOSE SCAN OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
 
@@ -96,7 +107,7 @@ public class Module_1 {
     // EXERCISE N°2
     public static void evenOrOdds() {
 
-        // CREATE SCAN OBJECT
+        // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in);
         
         // INPUT NUMBER
@@ -118,7 +129,7 @@ public class Module_1 {
             System.exit(0);
         }
 
-        // CLOSE SCAN OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
 
@@ -127,7 +138,7 @@ public class Module_1 {
     // EXERCISE N°3
     public static void invertString() {
         
-        // CREATE SCAN OBJECT
+        // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in); 
 
         // INPUT STRING
@@ -144,7 +155,7 @@ public class Module_1 {
         }
         System.out.print("\n\n");
 
-        // CLOSE SCAN OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
 
@@ -153,7 +164,7 @@ public class Module_1 {
     // EXERCISE N°4
     public static void replaceIntruders() {
 
-        // CREATE SCAN OBJECT
+        // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in); 
 
         // INPUT LETTER 'A'
@@ -189,7 +200,7 @@ public class Module_1 {
             System.out.print(c_words[i] + " ");
         }
 
-        // CLOSE SCAN OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
 
@@ -198,7 +209,7 @@ public class Module_1 {
     // EXERCISE N°5
     public static void compareStrings() {
 
-        // CREATE SCAN OBJECT
+        // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in); 
 
         // INPUT STRING 'A'
@@ -230,7 +241,7 @@ public class Module_1 {
         }
         System.out.println("\nIl numero di stringhe uguali è " + counter + ".\n");
 
-        // CLOSE SCAN OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT && EXIT PROGRAM
         scanner.close();
         System.exit(0);
 
