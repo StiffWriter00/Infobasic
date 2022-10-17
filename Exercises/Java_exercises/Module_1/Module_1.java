@@ -1,4 +1,4 @@
-// IMPORT MODULE
+// IMPORT MODULES
 import java.util.Scanner;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -7,66 +7,100 @@ import java.util.InputMismatchException;
 public class Module_1 {
 
     // MAIN
-    public static void main(String[] args) throws InterruptedException, IOException {chooseProgram();}
+    public static void main(String[] args) throws InterruptedException, IOException {
+        
+        // CHOOSE WHICH PROGRAM TO RUN
+        while(true) {
 
-    // FUNCTION TO CHOOSE WHICH PROGRAM TO RUN
-    private static void chooseProgram() throws InterruptedException, IOException {
+            // WELCOME MESSAGE && INPUT REQUEST
+            System.out.print("\033[H\033[2J");  
+            System.out.flush();
+            System.out.println("\nWELCOME!\n\nModule N°1 is running...\nPlease choose the program you want to run:\n");
 
-        // CHECK OPERATING SYSTEM
-        Runtime.getRuntime().exec("clear");
-        String clear = System.getProperty("os.name") == "Windows" ? "cls" : "clear";
+            // SPECIFY INPUT INSTRUCTIONS
+            System.out.println("1 ---> Aritmetic operators");
+            System.out.println("2 ---> Even or odds");
+            System.out.println("3 ---> Invert string");
+            System.out.println("4 ---> Replace intruders");
+            System.out.println("5 ---> Compare strings");
+            System.out.println("6 ---> Exit");
+        
+            // CREATE SCANNER OBJECT && USER INPUT
+            Scanner scanner = new Scanner(System.in); 
+            System.out.println("\nInsert the number corrisponding to the program in order to run it:");
 
-        // WELCOME MESSAGE && INPUT REQUEST
-        System.out.println("\nWELCOME!\nPlease choose the program you want to run:\n");
+            // INPUT HANDLING
+            try {
+                int input = scanner.nextInt();
 
-        // SPECIFY INPUT INSTRUCTIONS
-        System.out.println("1 ---> Aritmetic operators");
-        System.out.println("2 ---> Even or odds");
-        System.out.println("3 ---> Invert string");
-        System.out.println("4 ---> Replace intruders");
-        System.out.println("5 ---> Compare strings");
-        System.out.println("6 ---> Exit");
-	
-        // CREATE SCANNER OBJECT && USER INPUT
-        Scanner scanner = new Scanner(System.in); 
-        System.out.println("\nInsert the number corrisponding to the program in order to run it:");
+                if(input >= 1 && input <= 6) {
+                    switch(input) {
 
-        // INPUT HANDLING
-        try {
-            int input = scanner.nextInt();
-            if(input >= 1 && input <= 6) {
-                switch(input) {
-                    case 1:
-                        aritmeticOperators();
-                    case 2:
-                        evenOrOdds();
-                    case 3:
-                        invertString();
-                    case 4:
-                        replaceIntruders();
-                    case 5:
-                        compareStrings();
-                    case 6:
-                        System.out.println("\nBye!\n");
-                        Thread.sleep(2000);
-                        System.exit(0);
-                    default:}
-            } else {
+                        // CALL EXERCISE N°1
+                        case 1:
+                            System.out.print("\033[H\033[2J");  
+                            System.out.flush();
+                            aritmeticOperators();
+                            break;
+
+                        // CALL EXERCISE N°2
+                        case 2:
+                            System.out.print("\033[H\033[2J");  
+                            System.out.flush();
+                            evenOrOdds();
+                            break;
+
+                        // CALL EXERCISE N°3
+                        case 3:
+                            System.out.print("\033[H\033[2J");  
+                            System.out.flush();
+                            invertString();
+                            break;
+
+                        // CALL EXERCISE N°4
+                        case 4:
+                            System.out.print("\033[H\033[2J");  
+                            System.out.flush();
+                            replaceIntruders();
+                            break;
+
+                        // CALL EXERCISE N°5
+                        case 5:
+                            System.out.print("\033[H\033[2J");  
+                            System.out.flush();
+                            compareStrings();
+                            break;
+
+                        // EXIT MAIN
+                        case 6:
+                            System.out.println("\nBye!\n");
+                            Thread.sleep(2000);
+                            System.out.print("\033[H\033[2J");  
+                            System.out.flush();
+                            scanner.close();
+                            System.exit(0);
+
+                    }
+                    
+                    System.out.println("\n\nPress enter to continue."); try{System.in.read();} catch(Exception e){}
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
+
+                } else {
+                    System.out.println("\nInvalid input!");
+                    Thread.sleep(2000);
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
+                }
+
+            } catch(InputMismatchException ex) {
                 System.out.println("\nInvalid input!");
                 Thread.sleep(2000);
-                Runtime.getRuntime().exec(clear);
-                chooseProgram();
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
             }
 
-        } catch(InputMismatchException ex) {
-            System.out.println("\nInvalid input!");
-            Thread.sleep(2000);
-            Runtime.getRuntime().exec(clear);
-            chooseProgram();
         }
-
-        // CLOSE SCANNER OBJECT
-        scanner.close();
 
     }
 
@@ -96,26 +130,22 @@ public class Module_1 {
             System.exit(1);
         }
 
-        // SUM RESULT
+        // PRINT SUM RESULT
         System.out.println("\nThe sum result is ---> " + (first_number + second_number));
 
-        // SUBSTRACTION RESULT
+        // PRINT SUBSTRACTION RESULT
         System.out.println("The substraction result is ---> " + (first_number - second_number));
 
-        // MULTIPLICATION RESULT
+        // PRINT MULTIPLICATION RESULT
         System.out.println("The multiplication result is ---> " + (first_number * second_number));
 
-        // DIVISION RESULT
-        System.out.println("The division result is ---> " + (first_number / second_number) + "\n");
-
-        // CLOSE SCANNER OBJECT && EXIT PROGRAM
-        scanner.close();
-        System.exit(0);
+        // PRINT DIVISION RESULT
+        System.out.println("The division result is ---> " + (first_number / second_number));
 
     }
 
     // EXERCISE N°2
-    public static void evenOrOdds() {
+    private static void evenOrOdds() {
 
         // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in);
@@ -130,23 +160,20 @@ public class Module_1 {
             System.exit(1);
         }
         
-        // RESULT SHOW
+        // PRINT RESULT
         if ((number % 2) == 0) {
-            System.out.println("\n" + true + "\n");
-            System.exit(0);
+            System.out.println("\n" + true);
         } else {
-            System.out.println("\n" + false + "\n");
-            System.exit(0);
+            System.out.println("\n" + false);
         }
 
-        // CLOSE SCANNER OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT
         scanner.close();
-        System.exit(0);
 
     }
 
     // EXERCISE N°3
-    public static void invertString() {
+    private static void invertString() {
         
         // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in); 
@@ -159,20 +186,18 @@ public class Module_1 {
         String[] words = string.split(" ");
         System.out.print("\n");
 
-        // SHOW INVERTED WORDS
+        // PRINT INVERTED WORDS
         for (int i = words.length-1; i >= 0; i--) {
             System.out.print(words[i] + " ");
         }
-        System.out.print("\n\n");
 
-        // CLOSE SCANNER OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT
         scanner.close();
-        System.exit(0);
 
     }
 
     // EXERCISE N°4
-    public static void replaceIntruders() {
+    private static void replaceIntruders() {
 
         // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in); 
@@ -205,19 +230,18 @@ public class Module_1 {
         c_string = new String(c_string_array);
         c_words[1] = c_string;
         
-        // OUTPUT THE UPDATED C STRING
+        // PRINT THE UPDATED C STRING
         for(int i = 0; i < c_words.length; i++) {
             System.out.print(c_words[i] + " ");
         }
 
-        // CLOSE SCANNER OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT
         scanner.close();
-        System.exit(0);
 
     }
 
     // EXERCISE N°5
-    public static void compareStrings() {
+    private static void compareStrings() {
 
         // CREATE SCANNER OBJECT
         Scanner scanner = new Scanner(System.in); 
@@ -249,11 +273,10 @@ public class Module_1 {
                 }
             }
         }
-        System.out.println("\nIl numero di stringhe uguali è " + counter + ".\n");
+        System.out.println("\nIl numero di stringhe uguali è " + counter + ".");
 
-        // CLOSE SCANNER OBJECT && EXIT PROGRAM
+        // CLOSE SCANNER OBJECT
         scanner.close();
-        System.exit(0);
 
     }
 
