@@ -1,5 +1,4 @@
-# ***Python_exercises***
-
-## A group of simple scripts to practice Python.
+# ***Python exercises***
+## A miscellaneous group of simple Python scripts for practice.
 
 ### **<br>Some of these come from my old repository.**

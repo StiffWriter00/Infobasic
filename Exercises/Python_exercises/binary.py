@@ -1,3 +1,5 @@
+# CONVERT INTEGERS TO BINARY
+
 # IMPORT
 import platform
 import os

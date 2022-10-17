@@ -1,4 +1,4 @@
-# ***Machines_Management***
+# ***Machines Management***
 ## A simple software project exercise for managing machines in a company.
 
 **Brief repository guide:**

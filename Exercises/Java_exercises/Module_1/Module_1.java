@@ -1,15 +1,20 @@
 // IMPORT MODULE
 import java.util.Scanner;
+import java.io.IOException;
 import java.util.InputMismatchException;
 
 // CLASS
 public class Module_1 {
 
     // MAIN
-    public static void main(String[] args) {chooseProgram();}
+    public static void main(String[] args) throws InterruptedException, IOException {chooseProgram();}
 
     // FUNCTION TO CHOOSE WHICH PROGRAM TO RUN
-    private static void chooseProgram() {
+    private static void chooseProgram() throws InterruptedException, IOException {
+
+        // CHECK OPERATING SYSTEM
+        Runtime.getRuntime().exec("clear");
+        String clear = System.getProperty("os.name") == "Windows" ? "cls" : "clear";
 
         // WELCOME MESSAGE && INPUT REQUEST
         System.out.println("\nWELCOME!\nPlease choose the program you want to run:\n");
@@ -43,15 +48,20 @@ public class Module_1 {
                         compareStrings();
                     case 6:
                         System.out.println("\nBye!\n");
+                        Thread.sleep(2000);
                         System.exit(0);
                     default:}
             } else {
-                System.out.println("\nInvalid input!\n");
+                System.out.println("\nInvalid input!");
+                Thread.sleep(2000);
+                Runtime.getRuntime().exec(clear);
                 chooseProgram();
             }
 
         } catch(InputMismatchException ex) {
-            System.out.println("\nInvalid input!\n");
+            System.out.println("\nInvalid input!");
+            Thread.sleep(2000);
+            Runtime.getRuntime().exec(clear);
             chooseProgram();
         }
 
