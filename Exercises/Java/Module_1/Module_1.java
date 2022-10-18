@@ -15,7 +15,7 @@ public class Module_1 {
             // WELCOME MESSAGE && INPUT REQUEST
             System.out.print("\033[H\033[2J");  
             System.out.flush();
-            System.out.println("\nWELCOME!\n\nModule N°1 is running...\nPlease choose the program you want to run:\n");
+            System.out.println("\nWELCOME!\nModule N°1 is running...\n\nWARNING! The following programs do NOT have error handling due to the basic nature of the exercises on which they are based.\nPlease follow the instructions on the pdf.\n\nPlease choose the program you want to run:\n");
 
             // SPECIFY INPUT INSTRUCTIONS
             System.out.println("1 ---> Aritmetic operators");
@@ -26,78 +26,89 @@ public class Module_1 {
             System.out.println("6 ---> Exit");
         
             // CREATE SCANNER OBJECT && USER INPUT
-            Scanner scanner = new Scanner(System.in); 
+            Scanner scannerMain = new Scanner(System.in); 
             System.out.println("\nInsert the number corrisponding to the program in order to run it:");
+            String rawInput = scannerMain.nextLine();
 
             // INPUT HANDLING
             try {
-                int input = scanner.nextInt();
 
-                if(input >= 1 && input <= 6) {
+                if(rawInput.length() == 1) {
+                    char input = rawInput.charAt(0);
                     switch(input) {
 
                         // CALL EXERCISE N°1
-                        case 1:
+                        case '1':
                             System.out.print("\033[H\033[2J");  
                             System.out.flush();
                             aritmeticOperators();
                             break;
 
                         // CALL EXERCISE N°2
-                        case 2:
+                        case '2':
                             System.out.print("\033[H\033[2J");  
                             System.out.flush();
                             evenOrOdds();
                             break;
 
                         // CALL EXERCISE N°3
-                        case 3:
+                        case '3':
                             System.out.print("\033[H\033[2J");  
                             System.out.flush();
                             invertString();
                             break;
 
                         // CALL EXERCISE N°4
-                        case 4:
+                        case '4':
                             System.out.print("\033[H\033[2J");  
                             System.out.flush();
                             replaceIntruders();
                             break;
 
                         // CALL EXERCISE N°5
-                        case 5:
+                        case '5':
                             System.out.print("\033[H\033[2J");  
                             System.out.flush();
                             compareStrings();
                             break;
 
                         // EXIT MAIN
-                        case 6:
+                        case '6':
                             System.out.println("\nBye!\n");
                             Thread.sleep(2000);
                             System.out.print("\033[H\033[2J");  
                             System.out.flush();
-                            scanner.close();
+                            scannerMain.close();
                             System.exit(0);
 
-                    }
+                        default:
+                            System.out.println("\nInvalid input!");
+                            Thread.sleep(2000);
+                            System.out.print("\033[H\033[2J");  
+                            System.out.flush();
+                            continue;
+
+                        }
                     
                     System.out.println("\n\nPress enter to continue."); try{System.in.read();} catch(Exception e){}
                     System.out.print("\033[H\033[2J");  
                     System.out.flush();
-
-                } else {
-                    System.out.println("\nInvalid input!");
-                    Thread.sleep(2000);
-                    System.out.print("\033[H\033[2J");  
-                    System.out.flush();
-                }
+                    continue;
+                
+                    } else {
+                        System.out.println("\nInvalid input!");
+                        Thread.sleep(2000);
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        continue;
+                    }
 
             } catch(InputMismatchException ex) {
                 System.out.println("\nInvalid input!");
                 Thread.sleep(2000);
                 System.out.print("\033[H\033[2J");  
                 System.out.flush();
+                continue;
             }
 
         }
@@ -167,9 +178,6 @@ public class Module_1 {
             System.out.println("\n" + false);
         }
 
-        // CLOSE SCANNER OBJECT
-        scanner.close();
-
     }
 
     // EXERCISE N°3
@@ -190,9 +198,6 @@ public class Module_1 {
         for (int i = words.length-1; i >= 0; i--) {
             System.out.print(words[i] + " ");
         }
-
-        // CLOSE SCANNER OBJECT
-        scanner.close();
 
     }
 
@@ -235,9 +240,6 @@ public class Module_1 {
             System.out.print(c_words[i] + " ");
         }
 
-        // CLOSE SCANNER OBJECT
-        scanner.close();
-
     }
 
     // EXERCISE N°5
@@ -274,9 +276,6 @@ public class Module_1 {
             }
         }
         System.out.println("\nIl numero di stringhe uguali è " + counter + ".");
-
-        // CLOSE SCANNER OBJECT
-        scanner.close();
 
     }
 
