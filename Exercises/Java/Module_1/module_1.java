@@ -1,10 +1,10 @@
 // IMPORT MODULES
-import java.util.Scanner;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.InputMismatchException;
 
 // CLASS
-public class Module_1 {
+public class module_1 {
 
     // MAIN
     public static void main(String[] args) throws InterruptedException, IOException {
@@ -249,15 +249,15 @@ public class Module_1 {
         Scanner scanner = new Scanner(System.in); 
 
         // INPUT STRING 'A'
-        System.out.println("\nInserire la prima stringa:");
+        System.out.println("\nInsert the first string:");
         String string_a = scanner.nextLine();
 
         // INPUT STRING 'B'
-        System.out.println("\nInserire la seconda stringa:");
+        System.out.println("\nInsert the second string:");
         String string_b = scanner.nextLine();
 
         // INPUT STRING 'C'
-        System.out.println("\nInserire la terza stringa:");
+        System.out.println("\nInsert the third string:");
         String string_c = scanner.nextLine();
 
         // CHECK FOR EQUAL STRINGS AND PRINT COUNTER
@@ -275,7 +275,7 @@ public class Module_1 {
                 }
             }
         }
-        System.out.println("\nIl numero di stringhe uguali è " + counter + ".");
+        System.out.println("\nThe number of equal strings is " + counter + ".");
 
     }
 

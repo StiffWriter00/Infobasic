@@ -1,5 +1,4 @@
 # ARRANGE FIBONACCI SEQUENCE
-
 try:
 
     nterms = int(input("\nHow many terms? --> "))

@@ -1,5 +1,4 @@
 # ARRANGE PYTHAGORAS' MATRIX
-
 pythagoras = []
 
 print("")

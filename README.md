@@ -1,4 +1,4 @@
-# ***Infobasic***
-## A repository with my Infobasic school projects and exercises.
+# ***myPractice***
+## A repository with my school (and non-school) projects and exercises for personal practice.
 
 ### **<br>Enjoy!<br>:)**
