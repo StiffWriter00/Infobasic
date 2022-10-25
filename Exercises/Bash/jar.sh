@@ -1,7 +1,6 @@
 #!/usr/bin/bash
-# A simple script to make a jar file out of Java source code!
+# A SIMPLE SCRIPT TO MAKE A JAR FILE OUT OF JAVA SOURCE CODE!
 
-# STATIC FUNCTIONS
 # Ask for the main class
 ask_mainClass() {
 	printf "\nPlease, insert the name of the main class:\n"
@@ -25,32 +24,40 @@ ask_destinationPath() {
 }
 # END
 
-# SCRIPT
 # Ask for the directory in which there is the source code and then compile it to ByteCode
-printf "\nHello!\n\nPlease, give me the path to the source code:\n(Enter the path to one .java file or to the directory containing every .java file of the project.)\n\n"
+clear
+printf "Hello!\n\nPlease, give me the path to the source code:\n(Enter the path to one .java file or to the directory containing every .java file of the project.)\n"
 read source_path
-java_file=""
+while [ ! -d "$source_path" ]
+do
+  printf "\nDirectory does not exist!"
+  sleep 3
+  clear
+  printf "Hello!\n\nPlease, give me the path to the source code:\n(Enter the path to one .java file or to the directory containing every .java file of the project.)\n"
+  read source_path
+done
 
+# Single Java file case
 if [ "${source_path: -5}" = ".java" ]
 then
 
 	# Compile Java file
 	javac $source_path
+	java_file=$(basename $source_path) && java_class="${java_file::-5}.class" && unset java_file
+	mv "${source_path::-5}.class" $java_class
 
 	# Get main class && create MANIFEST file
 	ask_mainClass
 	echo "Main-Class: ${main_class}" >> MANIFEST.MF
 
 	# Get necessary info && create jar file
-	ask_destinationPath
 	ask_jarName
-	source_pathClass="${source_path::-5}.class"
-	jar_path="${destination_path}${jar_name}.jar"
-	jar cvmf MANIFEST.MF $jar_path $source_pathClass
-	chmod +x $jar_path
+	ask_destinationPath
+	jar cvmf MANIFEST.MF "${destination_path}${jar_name}" $java_class
+	chmod +x "${destination_path}${jar_name}"
 
 	# Clean unnecessary files
-	rm -rf MANIFEST.MF $source_pathClass
+	rm -rf MANIFEST.MF $java_class
 
 else
 	if [ "$source_path: -1}" = "/"]
@@ -60,4 +67,3 @@ else
 		javac "${source_path}*/.java"
 	fi
 fi
-# END

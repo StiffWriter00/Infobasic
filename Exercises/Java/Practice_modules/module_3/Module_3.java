@@ -1,13 +1,14 @@
+// IMPORT MODULES
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 // CLASS
-public class module_3 {
+public class Module_3 {
 
     // MAIN
     public static void main(String[] args) throws InterruptedException, IOException {
-        
+
         // CHOOSE WHICH PROGRAM TO RUN
         while(true) {
 
@@ -23,7 +24,7 @@ public class module_3 {
             System.out.println("4 ---> ");
             System.out.println("5 ---> ");
             System.out.println("6 ---> Exit");
-        
+
             // CREATE SCANNER OBJECT && USER INPUT
             Scanner scannerMain = new Scanner(System.in); 
             System.out.println("\nInsert the number corrisponding to the program in order to run it:");
@@ -80,6 +81,7 @@ public class module_3 {
                             System.out.flush();
                             System.exit(0);
 
+                        // INVALID INPUT HANDLING CASE N°1 ---> INPUT LENGTH IS 1, BUT IT'S NOT A NUMBER FROM 1 TO 6
                         default:
                             System.out.println("\nInvalid input!");
                             Thread.sleep(2000);
@@ -88,12 +90,14 @@ public class module_3 {
                             continue;
 
                         }
-                    
+
+                    // CONTINUE AFTER PROGRAM
                     System.out.println("\n\nPress enter to continue."); try{System.in.read();} catch(Exception e){}
                     System.out.print("\033[H\033[2J");  
                     System.out.flush();
                     continue;
-                
+
+                    // INVALID INPUT HANDLING CASE N°2 ---> INPUT LENGTH IS NOT 1
                     } else {
                         System.out.println("\nInvalid input!");
                         Thread.sleep(2000);
@@ -102,6 +106,7 @@ public class module_3 {
                         continue;
                     }
 
+            // INVALID INPUT HANDLING CASE N°3 ---> INPUT IS NOT AN INTEGER
             } catch(InputMismatchException ex) {
                 System.out.println("\nInvalid input!");
                 Thread.sleep(2000);
