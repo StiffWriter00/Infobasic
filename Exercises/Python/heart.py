@@ -1,4 +1,8 @@
+#!/usr/bin/python3
+# ------------------------------------
 # DRAW A HEART (SEND IT TO YOUR CRUSH)
+# ------------------------------------
+
 from turtle import *
 import time
 color ('red')

@@ -1,4 +1,8 @@
+#!/usr/bin/python3
+# --------------------------
 # ARRANGE PYTHAGORAS' MATRIX
+# --------------------------
+
 pythagoras = []
 
 print("")

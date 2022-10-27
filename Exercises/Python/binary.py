@@ -1,4 +1,8 @@
+#!/usr/bin/python3
+# --------------------------
 # CONVERT INTEGERS TO BINARY
+# --------------------------
+
 import platform
 import os
 

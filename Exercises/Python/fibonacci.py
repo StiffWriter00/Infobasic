@@ -1,4 +1,8 @@
+#!/usr/bin/python3
+# --------------------------
 # ARRANGE FIBONACCI SEQUENCE
+# --------------------------
+
 try:
 
     nterms = int(input("\nHow many terms? --> "))
@@ -19,5 +23,5 @@ try:
             count += 1
         print("")
 
-except:
+except ValueError:
     print("Please, insert numbers only!\n")
