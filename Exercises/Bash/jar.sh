@@ -4,63 +4,80 @@
 # It works with the JDK by compiling the code first with javac.
 # -------------------------------------------------------------
 
-# ASK FOR THE DIRECTORY IN WHICH THERE IS THE SOURCE CODE AND THEN COMPILE IT TO BYTECODE
-clear; printf "Welcome!\n\nPlease, give me the path to the source code:\n(Enter the path to one (or the name of one) .java file or to the directory containing every .java file of the project.)\n"
-read input
-
-# CHECK IF DIRECTORY EXISTS OR IF FILE EXISTS IN CURRENT WORKING DIRECTORY
-while [ ! -d $(dirname $input) ] || [ ! -f "$input" ]
+while :
 do
-	printf "\nDirectory or file does not exist!"; sleep 3
-	clear; printf "Hello!\n\nPlease, give me the path to the source code:\n(Enter the path to one (or the name of one) .java file or to the directory containing every .java file of the project.)\n"
+
+	# ASK FOR THE PATH TO SOURCE CODE
+	clear; printf "Welcome!\n\nPlease, give me the path to the source code:\n(Enter the path to one .java file or to the project directory containing every .java file.)\n"
 	read input
-done
 
-# SINGLE JAVA FILE CASE
-if [ "${input: -5}" = ".java" ]
-then
 
-	# COMPILE JAVA FILE AND MOVE CLASS FILE TO CURRENT DIRECTORY
-	javac $input
-	java_file=$(basename $input); java_class="${java_file::-5}.class"; unset java_file
-	mv "${input::-5}.class" $java_class
-
-	# GET MAIN CLASS AND CREATE MANIFEST FILE
-	clear; printf "Please, insert the name of the main class:\n(WARNING! No error handling on this one, please enter a valid name!)\n"
-	read main_class
-	echo "Main-Class: ${main_class}" >> MANIFEST.MF
-
-	# GET JAR FILE NAME
-	clear; printf "Please, insert the name of the jar file you want to create:\n"
-	read jar_name
-	if [ "${jar_name: -4}" != ".jar" ]
+	# CASE N°1 ---> USE A SINGLE JAVA FILE
+	if [ "${input: -5}" = ".java" ]
 	then
-		jar_name="${jar_name}.jar"
-	fi
 
-	# GET THE PATH WHERE TO SAVE THE JAR FILE
-	clear; printf "Please, insert the path in which to save the jar file:\n"
-	read destination_path
-	while [ ! -d $destination_path ]
+		# COMPILE JAVA FILE AND MOVE CLASS FILE TO CURRENT DIRECTORY
+		echo ""
+		if ! javac $input
+		then
+			printf "\nFile not found! Try again.\n"
+			sleep 5
+			continue
+		fi
+		java_file=$(basename $input); java_class="${java_file::-5}.class"; unset java_file
+		mv "${input::-5}.class" $java_class
+
+		# GET MAIN CLASS AND CREATE MANIFEST FILE
+		clear; printf "Please, insert the name of the main class:\n(WARNING! No error handling on this one, please enter a valid name or the jar file won't run!)\n"
+		read main_class
+		echo "Main-Class: ${main_class}" >> MANIFEST.MF
+
+		# GET JAR FILE NAME
+		clear; printf "Please, insert the name of the jar file you want to create:\n"
+		read jar_name
+		if [ "${jar_name: -4}" != ".jar" ]
+		then
+			jar_name="${jar_name}.jar"
+		fi
+
+		# GET THE PATH WHERE TO SAVE THE JAR FILE
+		clear; printf "Please, insert the path in which to save the jar file:\n"
+		read destination_path
+		while [ ! -d $destination_path ]
+		do
+		printf "\nDirectory does not exist!"; sleep 3
+		clear; printf "Please, insert the path in which to save the jar file:\n"
+		read destination_path
+		done
+		if [ "${destination_path: -1}" != "/" ]
+		then
+			destination_path="${destination_path}/"
+		fi
+
+		# GENERATE JAR FILE
+		echo ""
+		jar cvmf MANIFEST.MF "${destination_path}${jar_name}" $java_class
+		chmod +x "${destination_path}${jar_name}"
+		echo ""; sleep 3; clear
+
+		# CLEAN UNNECESSARY FILES
+		rm -rf MANIFEST.MF $java_class
+		break
+
+	# CASE N°2 ---> USE AN ENTIRE DIRECTORY
+	: '
+	else
+
+		# COMPILE JAVA
+	# CHECK IF DIRECTORY EXISTS
+	while [ ! -d $(dirname $input) ]
 	do
-	  printf "\nDirectory does not exist!"; sleep 3
-	  clear; printf "Please, insert the path in which to save the jar file:\n"
-	  read destination_path
+		printf "\nDirectory or file does not exist!"; sleep 3
+		clear; printf "Hello!\n\nPlease, give me the path to the source code:\n(Enter the path to one (or the name of one) .java file or to the directory containing every .java file of the project.)\n"
+		read input
 	done
-	if [ "${destination_path: -1}" != "/" ]
-	then
-		destination_path="${destination_path}/"
+	'
+
 	fi
 
-	# GENERATE JAR FILE
-	echo ""
-	jar cvmf MANIFEST.MF "${destination_path}${jar_name}" $java_class
-	chmod +x "${destination_path}${jar_name}"
-	echo ""; sleep 3; clear
-
-	# CLEAN UNNECESSARY FILES
-	rm -rf MANIFEST.MF $java_class
-
-# PROJECT DIRECTORY CASE
-
-fi
+done

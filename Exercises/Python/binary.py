@@ -33,6 +33,7 @@ while True:
 
         except ValueError:
             print("\nInsert numbers only!\n\n")
+
     except KeyboardInterrupt:
         clear()
         print("Insert number (type 'exit' to close the program or press 'ctrl+c' to clear the screen).\n")
