@@ -12,11 +12,11 @@ public class Vehicle {
     }
 
     // SETTERS
-    public void set_licensePlate(String licensePlate) {this.licensePlate = licensePlate;}
+    public void setLicensePlate(String licensePlate) {this.licensePlate = licensePlate;}
     public void set_seatsNumber(int seatsNumber) {this.seatsNumber = seatsNumber;}
 
     // GETTERS
-    public String get_licensePlate() {return licensePlate;}
-    public int get_seatsNumber() {return seatsNumber;}
+    public String getLicensePlate() {return licensePlate;}
+    public int getSeatsNumber() {return seatsNumber;}
 
 }

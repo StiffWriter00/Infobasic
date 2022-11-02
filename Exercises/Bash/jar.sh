@@ -1,16 +1,18 @@
 #!/usr/bin/bash
-# -------------------------------------------------------------
+# -------------------------------------------------------------------------
 # A SIMPLE SCRIPT TO MAKE A JAR FILE OUT OF JAVA SOURCE CODE!
-# It works with the JDK by compiling the code first with javac.
-# -------------------------------------------------------------
+# It works with the JDK by compiling the code first with the "javac" command.
+# -------------------------------------------------------------------------
 
+# STATIC METHODS ---> coming soon (for case n°2)
+
+# START SCRIPT
 while :
 do
 
 	# ASK FOR THE PATH TO SOURCE CODE
 	clear; printf "Welcome!\n\nPlease, give me the path to the source code:\n(Enter the path to one .java file or to the project directory containing every .java file.)\n"
 	read input
-
 
 	# CASE N°1 ---> USE A SINGLE JAVA FILE
 	if [ "${input: -5}" = ".java" ]
@@ -65,19 +67,17 @@ do
 		break
 
 	# CASE N°2 ---> USE AN ENTIRE DIRECTORY
-	: '
 	else
 
-		# COMPILE JAVA
-	# CHECK IF DIRECTORY EXISTS
-	while [ ! -d $(dirname $input) ]
-	do
-		printf "\nDirectory or file does not exist!"; sleep 3
-		clear; printf "Hello!\n\nPlease, give me the path to the source code:\n(Enter the path to one (or the name of one) .java file or to the directory containing every .java file of the project.)\n"
-		read input
-	done
-	'
+		# CHECK IF DIRECTORY EXISTS
+		if [ ! -d $(dirname $input) ]
+		then
+			printf "\nDirectory does not exist!"
+			sleep 5
+			continue
+		fi
 
 	fi
 
 done
+# END SCRIPT

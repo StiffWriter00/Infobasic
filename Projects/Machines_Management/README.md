@@ -1,5 +1,6 @@
 # ***Machines Management***
 ## A simple software project exercise for managing machines in a company.
+<br>
 
 **Brief repository guide:**
 - In the `Docs` folder you can find the software's main projectual documents (ER, Relational and UML).
