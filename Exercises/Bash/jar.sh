@@ -4,7 +4,35 @@
 # It works with the JDK by compiling the code first with the "javac" command.
 # -------------------------------------------------------------------------
 
-# STATIC METHODS ---> coming soon (for case n°2)
+# STATIC FUNCTION TO GET ALL NECESSARY INFO
+function getInfo {
+
+	# GET MAIN CLASS AND CREATE MANIFEST FILE
+	clear; printf "Please, insert the name of the main class:\n(WARNING! No error handling on this one, please enter a valid name or the jar file won't run!)\n"
+	read main_class
+	echo "Main-Class: ${main_class}" >> MANIFEST.MF
+
+	# GET JAR FILE NAME, PATH AND SAVE IT
+	clear; printf "Please, insert the name of the jar file you want to create:\n"
+	read jar_name
+	if [ "${jar_name: -4}" != ".jar" ]
+	then
+		jar_name="${jar_name}.jar"
+	fi
+	clear; printf "Please, insert the path in which to save the jar file:\n"
+	read destination_path
+	while [ ! -d $destination_path ]
+	do
+	printf "\nDirectory does not exist!"; sleep 3
+	clear; printf "Please, insert the path in which to save the jar file:\n"
+	read destination_path
+	done
+	if [ "${destination_path: -1}" != "/" ]
+	then
+		destination_path="${destination_path}/"
+	fi
+
+}
 
 # START SCRIPT
 while :
@@ -29,32 +57,8 @@ do
 		java_file=$(basename $input); java_class="${java_file::-5}.class"; unset java_file
 		mv "${input::-5}.class" $java_class
 
-		# GET MAIN CLASS AND CREATE MANIFEST FILE
-		clear; printf "Please, insert the name of the main class:\n(WARNING! No error handling on this one, please enter a valid name or the jar file won't run!)\n"
-		read main_class
-		echo "Main-Class: ${main_class}" >> MANIFEST.MF
-
-		# GET JAR FILE NAME
-		clear; printf "Please, insert the name of the jar file you want to create:\n"
-		read jar_name
-		if [ "${jar_name: -4}" != ".jar" ]
-		then
-			jar_name="${jar_name}.jar"
-		fi
-
-		# GET THE PATH WHERE TO SAVE THE JAR FILE
-		clear; printf "Please, insert the path in which to save the jar file:\n"
-		read destination_path
-		while [ ! -d $destination_path ]
-		do
-		printf "\nDirectory does not exist!"; sleep 3
-		clear; printf "Please, insert the path in which to save the jar file:\n"
-		read destination_path
-		done
-		if [ "${destination_path: -1}" != "/" ]
-		then
-			destination_path="${destination_path}/"
-		fi
+		# CALL FUNCTION TO GET DATA
+		getInfo
 
 		# GENERATE JAR FILE
 		echo ""
@@ -76,6 +80,35 @@ do
 			sleep 5
 			continue
 		fi
+		if [ "${input: -1}" != "/" ]
+		then
+			destination_path="${destination_path}/"
+		fi
+		echo ""
+
+		# COMPILE JAVA FILE AND MOVE CLASS FILE TO CURRENT DIRECTORY
+		javac -sourcepath $input
+		break
+		if ! javac "${input}*.java"
+		then
+			printf "\nNo Java file found in this directory! Try again.\n"
+			sleep 5
+			continue
+		fi
+		break
+
+		# CALL FUNCTION TO GET DATA
+		getInfo
+
+		# GENERATE JAR FILE
+		echo ""
+		jar cvmf MANIFEST.MF "${destination_path}${jar_name}" *.class
+		chmod +x "${destination_path}${jar_name}"
+		echo ""; sleep 3; clear
+
+		# CLEAN UNNECESSARY FILES
+		rm -rf MANIFEST.MF *.class
+		break
 
 	fi
 

@@ -23,12 +23,19 @@
 <!-- Body -->
 <body style="background-image: url('Dependencies/Background.jpg');">
 
-    <!-- Input Container -->
+    <!-- Center Elements -->
     <center>
+
+        <!-- Grid -->
+        <div id ="grid_container" style="display: none; background-color: white; margin-top: 10px;" class="container-fluid">
+            <canvas style="margin-top: 10px; margin-bottom: 3px" id="grid"></canvas>
+        </div>
+
+        <!-- Form Container -->
         <div class="container" style="position: fixed; bottom: 8%; right: 0px; left: 0px; padding-left: 25%; padding-right: 25%;">
             <form id="form">
 
-                <!-- Form -->
+                <!-- Input -->
                 <div class="input-group">
                     <input class="form-control form-control-lg" id="x" type="number" placeholder="Base" aria-label="Base">
                     <span class="input-group-text">x</span>
@@ -45,6 +52,7 @@
                 <input type="button" value="Reset" onclick="resetPage()" class="btn btn-danger btn-lg mt-3">
 
         </div>
+
     </center>
 
     <!-- Images -->
